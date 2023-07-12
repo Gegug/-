@@ -160,15 +160,27 @@ public class Main {
         }
 
         StringBuilder romanNumber = new StringBuilder();
-        for (Map.Entry<Character, Integer> entry : romanValues.entrySet()) {
-            char ch = entry.getKey();
-            int value = entry.getValue();
-            while (arabicNumber >= value) {
-                romanNumber.append(ch);
-                arabicNumber -= value;
+        while (!(arabicNumber == 0)) {
+            if (arabicNumber >= 100) {
+                arabicNumber = arabicNumber - 100;
+                romanNumber.append("C");
+                continue;
+            }
+            if (arabicNumber >= 50) {
+                arabicNumber -= 50;
+                romanNumber.append("L");
+                continue;
+            }
+            if (arabicNumber >= 10) {
+                arabicNumber -= 10;
+                romanNumber.append("X");
+                continue;
+            }
+            if (arabicNumber >= 1) {
+                arabicNumber -= 1;
+                romanNumber.append("I");
             }
         }
-
         return romanNumber.toString();
     }
 }
